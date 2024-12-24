@@ -85,12 +85,13 @@ class DateVoiceOver:
             if hour != 0:
                 audio.append(self.numbers[str(hour)])
 
-        if hour % 10 == 1:
-            audio.append(self.hours['Час'])
-        elif ((hour > 20 or hour < 10) and
-              hour % 10 > 1 and
-              hour % 10 < 5):
-            audio.append(self.hours['Часа'])
+        if hour < 10 and hour > 20:
+            if hour % 10:
+                audio.append(self.hours['Час'])
+            elif ((hour > 20 or hour < 10) and
+                  hour % 10 > 1 and
+                  hour % 10 < 5):
+                audio.append(self.hours['Часа'])
         else:
             audio.append(self.hours['Часов'])
 
